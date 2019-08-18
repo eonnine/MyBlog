@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "MyBlog FrontEnd",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html -p 3000 --open",
+    "build": "parcel build ./src/index.html -d ./build/output --public-url ./src"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-apollo": "^3.0.1",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}

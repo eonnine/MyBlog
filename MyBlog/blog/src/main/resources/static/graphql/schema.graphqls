@@ -3,6 +3,10 @@ type Query {
   city(id: Int): City
 }
 
+type Mutation {
+  putCity(id: Int, name: String): City
+}
+
 type City {
   id: Int!
   name: String

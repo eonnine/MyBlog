@@ -11,7 +11,7 @@ import graphql.schema.DataFetcher;
 
 @Gql
 @Component
-public class CityDataFetcher {
+public class CityDataFetcher  {
   
   @Autowired
   private CityRepository cityRepository;
@@ -27,6 +27,16 @@ public class CityDataFetcher {
   public DataFetcher<?> city () {
     return environment -> {
       int id = environment.getArgument("id");
+      return cityRepository.findById(id);
+    };
+  }
+
+  @GqlDataFetcher(type=GqlType.MUTATION)
+  public DataFetcher<?> putCity () {
+    return environment -> {
+      int id = environment.getArgument("id");
+      String name = environment.getArgument("name");
+      System.out.println(id + " , " + name);
       return cityRepository.findById(id);
     };
   }
