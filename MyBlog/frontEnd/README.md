@@ -1,2 +1,2 @@
 # MyBlog-frontend
-parcel, react-apollo
+parcel, react-apollo, typescript, hooks
