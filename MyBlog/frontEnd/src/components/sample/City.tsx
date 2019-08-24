@@ -6,12 +6,12 @@ interface City {
   population: number
 }
 
-const City: FunctionComponent<City> = (props) => {
+const City: FunctionComponent<City> = ({ id, name, population }) => {
   return (
     <tr>
-      <td>{props.id}</td>
-      <td>{props.name}</td>
-      <td>{props.population}</td>
+      <td>{id}</td>
+      <td>{name}</td>
+      <td>{population}</td>
     </tr>
   )
 }

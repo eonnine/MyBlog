@@ -1,10 +1,5 @@
 import React, { Fragment, FunctionComponent } from 'react';
 import City from './City';
-import styled from 'styled-components';
-
-const RowStyle = styled.div`
-
-`;
 
 interface ICity {
   id: number
@@ -16,10 +11,10 @@ interface ICityList {
   cityList: [ICity]
 }
 
-const CityList: FunctionComponent<ICityList> = (props) => {
+const CityList: FunctionComponent<ICityList> = ({ cityList }) => {
 
   const makeCityList = () => {
-    return props.cityList.map(city => (
+    return cityList.map((city: ICity) => (
       <City
         key={city.id}
         id={city.id}

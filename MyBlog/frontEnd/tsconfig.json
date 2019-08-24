@@ -13,6 +13,7 @@
     "removeComments": true,                /* Do not emit comments to output. */
     "skipLibCheck": true,
     "watch": false,
+    "strictNullChecks": false,
 
     /* Strict Type-Checking Options */
     "strict": true,                           /* Enable all strict type-checking options. */
