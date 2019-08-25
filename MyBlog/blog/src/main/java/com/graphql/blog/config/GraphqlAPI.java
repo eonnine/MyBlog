@@ -37,16 +37,16 @@ public class GraphqlAPI {
   private GraphQL graphQL;
 
   @Value("classpath:static/graphql/schema.graphqls") 
-  Resource resource;
+  Resource schema;
 
-  @Bean 
+  @Bean
   public GraphQL graphQL() {
     return graphQL;
   }
 
   @PostConstruct
   public void init() throws IOException {
-    URL url = resource.getURL();
+    URL url = schema.getURL();
     String sdl = Resources.toString(url, Charsets.UTF_8);
     GraphQLSchema graphQLSchema = buildSchema(sdl);
     this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();

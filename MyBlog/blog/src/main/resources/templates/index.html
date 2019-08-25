@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <a id="goHome">home</a>
+    <br/>
+    <div id="root" th:utext=${App}></div>
+
+    <script src="/static/react/dist/bundle.js"></script>
+    <script>
+    document.getElementById('goHome').addEventListener('click', function () {
+      render();
+    });
+    </script>
+  </body>
+</html>
