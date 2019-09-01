@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "merge": "gql-merge --out-file ./src/main/resources/static/graphql/schema.graphqls ./src/main/resources/static/graphql/**/*.graphql"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "gql-merge": "0.0.6"
+  }
+}

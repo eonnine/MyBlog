@@ -31,14 +31,4 @@ public class CityDataFetcher  {
     };
   }
 
-  @GqlDataFetcher(type=GqlType.MUTATION)
-  public DataFetcher<?> putCity () {
-    return environment -> {
-      int id = environment.getArgument("id");
-      String name = environment.getArgument("name");
-      System.out.println(id + " , " + name);
-      return cityRepository.findById(id);
-    };
-  }
-
 }

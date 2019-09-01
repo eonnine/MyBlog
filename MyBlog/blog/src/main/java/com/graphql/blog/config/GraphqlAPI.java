@@ -64,8 +64,9 @@ public class GraphqlAPI {
   }
   
   public Builder createBuilderByAnnotation () {
-    Builder builder = RuntimeWiring.newRuntimeWiring();
+    Builder builder = null;
     try{
+      builder = RuntimeWiring.newRuntimeWiring();
       Map<String, Object> classes = beanFactory.getBeansWithAnnotation(Gql.class);
       Class<?> clz = null;
       GqlDataFetcher gdf = null;

@@ -1,0 +1,19 @@
+type Query {
+  getBoardList(index: Int!): [Board]
+  getBoard(id: Int!): Board
+}
+
+type Mutation {
+ postBoard(title: String!, content: String!, isPublic: Boolean!): Board
+ patchBoard(id: Int!, title: String!, content: String!, isPublic: Boolean!): Board
+}
+
+type Board {
+  id: Int!
+  title: String!
+  content: String!
+  isPublic: Boolean!
+  visitCount: Int
+  postDate: String
+  updateDate: String
+}

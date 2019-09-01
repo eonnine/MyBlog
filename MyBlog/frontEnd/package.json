@@ -4,7 +4,7 @@
   "description": "MyBlog FrontEnd",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html -p 3000 --open",
+    "start": "parcel ./src/index.html -p 3000 --open",
     "build": "parcel build ./src/index.tsx --no-minify -d ../blog/src/main/resources/static/react/dist -o bundle.js --public-url ./src"
   },
   "author": "",
