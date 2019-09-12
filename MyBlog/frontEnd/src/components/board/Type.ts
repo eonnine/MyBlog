@@ -18,3 +18,7 @@ export interface IBoardPost {
   content: string
   isPublic: boolean
 }
+
+export interface ITd {
+	width: string,
+}

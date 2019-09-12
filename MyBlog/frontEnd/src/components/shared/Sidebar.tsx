@@ -10,7 +10,6 @@ const Sidebar = () => {
             <li><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
             <li><NavLink to="/Board" activeClassName="active">Board</NavLink></li>
             <li><NavLink to="/Sample" activeClassName="active">Sample</NavLink></li>
-            <li><NavLink to="/Sample3" activeClassName="active">Sample3</NavLink></li>
           </ul>
         </nav>
       </div>

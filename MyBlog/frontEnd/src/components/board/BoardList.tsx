@@ -4,10 +4,6 @@ import Board from './Board';
 
 const BoardList: FunctionComponent<IBoardList> = ({ boardList }) => {
 
-  useEffect(() => {
-    console.log(1);
-  }, [ boardList ]);
-
   const makeList = () => {
     return boardList.map((board: IBoard) => {
       return <Board
