@@ -12,8 +12,8 @@ export default {
     }
   `,
   GET_BOARD: gql`
-    query {
-      getBoard {
+    query GetBoard($id: Int!) {
+      getBoard(id: $id) {
         id 
         title 
         content 

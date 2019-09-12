@@ -2,7 +2,7 @@ import React, { useEffect, FunctionComponent } from 'react';
 import { IBoardList, IBoard } from './Type';
 import Board from './Board';
 
-const BoardList: FunctionComponent<IBoardList> = ({ boardList }) => {
+const BoardList: FunctionComponent<IBoardList> = ({ boardList, pageIndex }) => {
 
   const makeList = () => {
     return boardList.map((board: IBoard) => {
@@ -13,8 +13,7 @@ const BoardList: FunctionComponent<IBoardList> = ({ boardList }) => {
         content={board.content}
         visitCount={board.visitCount}
         postDate={board.postDate}
-        updateDate={board.updateDate}
-        isPublic={board.isPublic}
+        pageIndex={pageIndex}
       />
     });
   }

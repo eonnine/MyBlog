@@ -1,13 +1,13 @@
 import React, { useState, FunctionComponent } from 'react';
-import { IBoardList, IBoardPost } from './Type';
+import { RouteComponentProps } from 'react-router';
+import { IPutBoard, IBoardWriterProps } from './Type';
 import { useMutation } from 'react-apollo-hooks';
 import Queries from './Queries';
 
-const Post: FunctionComponent<any> = ({ history }) => {
+const Post: FunctionComponent<RouteComponentProps<IBoardWriterProps>> = ({ match, history }) => {
 
-  // useSate 및 작성 폼 초기화에 사용합니다.
-  const postData: IBoardPost = {
-    id: 8,
+  const postData: IPutBoard = {
+    id: Number(match.params.id),
     title: '',
     content: '',
     isPublic: false
@@ -15,6 +15,7 @@ const Post: FunctionComponent<any> = ({ history }) => {
   
   const [ state, setState ] = useState(postData);
   const [ postBoard] = useMutation(Queries.POST_BOARD);
+  const [ patchBoard ] = useMutation(Queries.PATCH_BOARD);
 
   // 공개 여부 체크박스 이벤트
   const onCheckboxClick = (e: React.MouseEvent) => {
@@ -22,7 +23,7 @@ const Post: FunctionComponent<any> = ({ history }) => {
       ...state,
       isPublic: !state.isPublic
     });
-  }
+  };
 
   // 작성 폼 입력 시 데이터 변경 이벤트
   const onChangeState = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -30,26 +31,47 @@ const Post: FunctionComponent<any> = ({ history }) => {
       ...state,
       [e.target.id]: e.target.value
     });
-  }
-
-  const [ patchBoard ] = useMutation(Queries.PATCH_BOARD);
+  };
   
    // 신규 게시글 작성
-  const onPostBoard = () => {
-    const { id, title, content, isPublic } = state;
-    if( state.id == 0 ){
-      postBoard({ variables: { title, content, isPublic } });
-    } else {
-      patchBoard({ variables: { id, title, content, isPublic } });
+  const onPostBoard = async () => {
+    const { title, content, isPublic } = state;
+    try {
+      const response = await postBoard({ variables: { title, content, isPublic } });
+      afterSave(response.data.id);
+    } catch(error) {
+      alert('에러가 발생했습니다. 에러 코드: 001');
+      console.error(error.message);
     }
+  };
 
-  }
+  // 기존 게시글 수정
+  const onPatchBoard = async () => {
+    const { id, title, content, isPublic } = state;
+    try{
+      const response = await patchBoard({ variables: { id, title, content, isPublic } });
+      afterSave(response.data.id);
+    } catch(error) {
+      alert('에러가 발생했습니다. 에러 코드: 002');
+      console.error(error.message);
+    }
+  };
 
+  const afterSave = (id: number) => {
+    if( id > 0 ){
+      alert('저장되었습니다');
+      history.push("/Board");
+    } else {
+      alert('저장되지 않았습니다. 다시 시도해주세요.');
+    }
+  };
+
+  // 페이지 벗어날 때 확인
   const onLeavePage = () => {
-    if( !confirm('작성 중이던 내용이 사라집니다. 정말 목록으로 이동하시겠습니까?') ){
+    if( !confirm('작성 중이던 내용이 사라집니다. 정말 나가시겠습니까?') ){
       return false;
     }
-    history.push("/Board");
+    history.push("/Board/0");
   }
 
   return (
@@ -60,7 +82,7 @@ const Post: FunctionComponent<any> = ({ history }) => {
           <form action="#">
             <div className="row gtr-uniform">
               <div className="col-6 col-12-xsmall">
-                <input type="text" id="id" value={state.id} onChange={()=>{}}/>
+                {/* <input type="text" id="id" value={state.id} onChange={()=>{}}/> */}
                 <input type="text" id="title" value={state.title} onChange={onChangeState} placeholder="Title" />
               </div>
               <div className="col-4 col-12-small">
@@ -74,7 +96,7 @@ const Post: FunctionComponent<any> = ({ history }) => {
           </form>
           <ul className="actions">
             <li><a href="#" className="button" onClick={onLeavePage}>목록</a></li>
-            <li><a href="#" className="button" onClick={onPostBoard}>작성</a></li>
+            <li><a href="#" className="button" onClick={state.id == 0 ? onPostBoard : onPatchBoard}>작성</a></li>
           </ul>
         </section>
       </div>
