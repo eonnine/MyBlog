@@ -1,7 +1,7 @@
+// 페이지 이동시 사용할 Reducer의 타입 정의입니다.
 export type TChangePageAction = { type: 'INCREMENT', length: number } | { type: 'DECREMENT', length: number };
 export type TPutDataAction = { data: IPutBoard };
-
-export interface IIndexState {
+export interface IPageIndexState {
   index: number;
 }
 

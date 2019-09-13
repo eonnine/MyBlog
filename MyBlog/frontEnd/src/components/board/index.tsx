@@ -2,11 +2,11 @@ import React, { useReducer, FunctionComponent } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useQuery } from 'react-apollo-hooks';
 import { Link } from 'react-router-dom';
-import { IIndexState, IBoardProps, TChangePageAction } from './Type';
+import { IPageIndexState, IBoardProps, TChangePageAction } from './Type';
 import BoardList from './BoardList';
 import Queries from './Queries';
 
-function PageReducer (state: IIndexState, action: TChangePageAction) {
+function PageReducer (state: IPageIndexState, action: TChangePageAction) {
   let { index } = state;
   const { type, length } = action;
 
