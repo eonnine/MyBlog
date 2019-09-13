@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Home from './Home';
 import Sample from '../sample';
 
-import Board from '../board/Index';
+import Board from '../board/index';
 import BoardWriter from '../board/BoardWriter';
 import BoardDetail from '../board/BoardDetail';
 

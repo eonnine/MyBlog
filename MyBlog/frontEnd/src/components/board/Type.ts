@@ -1,8 +1,9 @@
+export type TChangePageAction = { type: 'INCREMENT', length: number } | { type: 'DECREMENT', length: number };
+export type TPutDataAction = { data: IPutBoard };
+
 export interface IIndexState {
   index: number;
 }
-
-export type TAction = { type: 'INCREMENT', length: number } | { type: 'DECREMENT', length: number };
 
 export interface IBoardProps {
   pageIndex: string
@@ -32,6 +33,7 @@ export interface IBoardList {
 }
 
 export interface IPutBoard {
+  [key: number]: IPutBoard
   id: number
   title: string
   content: string

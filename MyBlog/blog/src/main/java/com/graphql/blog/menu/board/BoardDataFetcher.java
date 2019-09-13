@@ -40,7 +40,10 @@ public class BoardDataFetcher {
   public DataFetcher<?> getBoard () {
     return enviroment -> {
       int id = enviroment.getArgument("id");
-      return boardRepository.findById(id);
+      Optional<BoardEntity> optional = boardRepository.findById(id);
+      BoardEntity entity = optional.get();
+      entity.setVisitCount(entity.getVisitCount()+1);
+      return optional;
     };
   }
 

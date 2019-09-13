@@ -2,11 +2,11 @@ import React, { useReducer, FunctionComponent } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useQuery } from 'react-apollo-hooks';
 import { Link } from 'react-router-dom';
-import { IIndexState, TAction, IBoardProps } from './Type';
+import { IIndexState, IBoardProps, TChangePageAction } from './Type';
 import BoardList from './BoardList';
 import Queries from './Queries';
 
-function PageReducer (state: IIndexState, action: TAction) {
+function PageReducer (state: IIndexState, action: TChangePageAction) {
   let { index } = state;
   const { type, length } = action;
 
@@ -25,14 +25,12 @@ function PageReducer (state: IIndexState, action: TAction) {
 const Index: FunctionComponent<RouteComponentProps<IBoardProps>> = ({ match }) => {
   
   let [ { index }, dispatch ] = useReducer(PageReducer, { index: Number(match.params.pageIndex) || 0 });
-  const { data, loading, error } = useQuery(Queries.GET_BOARD_LIST,{ variables: { index } });
+  const { data, loading, error } = useQuery(Queries.GET_BOARD_LIST,{ variables: { index }, fetchPolicy: "no-cache" });
 
   let length = 0;
   if( data ){
     length = data.getBoardList.length;
   }
-
-console.log(index);
 
   return (
     ( loading ) ? <span>불러오는 중...</span> :

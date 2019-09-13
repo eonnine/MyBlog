@@ -29,6 +29,7 @@ const BoardDetail: FunctionComponent<RouteComponentProps<IBoardDetailProps>> = (
           </form>
           <ul className="actions">
             <li><Link to={`/Board/${pageIndex}`} className="button">목록</Link></li>
+            <li><Link to={`/BoardWriter/${id}`} className="button">수정</Link></li>
           </ul>
         </section>
       </div>
